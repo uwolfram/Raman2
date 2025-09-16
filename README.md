@@ -1,6 +1,8 @@
 # General
 
-Code evaluates individual Raman spectra. Note, that it is a finger exercise where I tried to code some modules.
+Code evaluates individual Raman spectra. Note, that it is a finger exercise where I tried to code some modules. Therefore, two scripts are included here:
+* ramanAnal.py - script initialising the analyses modules and running the analyses
+* ramanpy.py - script holding two modules for backgroundcorrection and peak analyes
 
 Code was originally developed 2018 for [2] and based on [1] so cite these papers when you use it: 
     [1] Mirzaali, M., Schwiedrzik, J., Thaiwichai, S., Best, J., Michler, J., Zysset, P. & Wolfram, U. 
@@ -11,10 +13,15 @@ Code was originally developed 2018 for [2] and based on [1] so cite these papers
         Evidence of “Coralporosis” as an Indicator of Habitat Integrity. Frontiers in Marine Science 7, 1–16 (2020).
 
 To evaluate spectra bands need to be specified. To call the analyses use for example:
+```bash
     python3 ramanAnal.py -f CINMS_001_live_1_Copy_mod_Copy.txt -p T -lb 1050 -ub 1120 -b CaCO3
+```
+```bash
     python3 ramanAnal.py -f AC1_P01.txt -p T -lb 1000 -ub 1150 -b v1PO4
-
+```
+```bash
     python3 ramanAnal.py -f AC1_P01.txt -p T -lb 1620 -ub 1700 -b amid1
+```
 
 ## Evaluated spectra
 Spectra to be evaluated could be in bone tisste:
@@ -54,20 +61,18 @@ ub:
 * the background corrected spectra
 * writes CINMS_001_live_1_*.pdf to illustrate wavelet (Lorentzian function) used for analyses
 
-
-        
 # Example run
 
 see above
 
-
 # Misc
 
+## Background correction
 note ramanAnal.py can call two different background corrections that do essentially the same
 backgroundCorrection() # own code
 backgroundCorrection2() # imports baselineCorrection
 
-
+## bash file to analyse many spectra on linux
 if you wish to execute for many spectra, you could make an executable text file with the following content:
 
 #! /bin/bash
@@ -76,3 +81,6 @@ for item in *.txt
 do
     ./ramanAnal.py $item plot
 done
+
+## Note
+https://github.com/uwolfram/Raman is a more elaborate analyses but this code here is more suitable to analyse the odd spectrum. Quick and dirty as they say...
